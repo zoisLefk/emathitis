@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+
+:root {
+    --selected-item: 0;
+    --item-width: 200px;
+    --item-height: 50px;
+    --item-side-height: 40px;
+    --item-move-step: -45px;
+    --img-y-tranform: -30px;
+}
+
+.new-games-container {
+    display: grid;
+    position: relative;
+    grid-template-columns: auto auto;
+    margin: 100px 0;
+}
+
+.game-img {
+    height: 100%;
+    transform: translateX(calc(var(--selected-item)*(-300px)));
+    transition: 1s ease-in-out;
+    position: relative;
+}
+
+.img-container:hover .play-button {
+    display: flex;
+}
+
+.play-button {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    color: white;
+    font-size: 4em;
+}
+
+.play-button div {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    color: rgba(255, 255, 255, 0.7);
+    transform: translate(-50%, -100%);
+    transition: top 1s, transform 1s, color 1s;
+}
+
+.play-button a {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.images {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.img-container {
+    display: flex;
+    height: calc(var(--item-height)*6);
+    width: calc(var(--item-height)*6);
+    transform-origin: left;
+    transform: skewY(10deg) translateY(var(--img-y-tranform));
+}
+
+.img-bg {
+    position: absolute;
+    right: -15px;
+    width: 15px;
+    height: 100%;
+    background-color: #2b2c31;
+    transform-origin: left;
+    transform: skewY(-45deg);
+}
+
+.img-bg::before {
+    content: '';
+    background: #323338;
+    height: calc(var(--item-height)*6);
+    width: 15px;
+    position: absolute;
+    top: calc(-1 * var(--item-height)*6);
+    transform-origin: bottom;
+    transform: skewX(45deg);
+}
+
+.new-games-container ul {
+    position: relative;
+    transform: skewY(-15deg);
+}
+
+.new-games-container ul li {
+    position: relative;
+    list-style: none;
+    width: var(--item-width);
+    height: 20px;
+    display:list-item;
+    display: flex;
+    align-items: center;
+    background-color: #3e3f46;
+    padding: 15px;
+    transition: 1s;
+    z-index: var(--i);
+}
+
+.new-games-container ul li::before {
+    content: '';
+    width: var(--item-side-height);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: calc(-1*var(--item-side-height));
+    transform-origin: right;
+    transform: skewY(45deg);
+    background-color: #2b2c31;
+    transition: 1s;
+}
+
+.new-games-container ul li::after {
+    content: '';
+    width: 100%;
+    height: var(--item-side-height);
+    position: absolute;
+    top: calc(-1*var(--item-side-height));
+    left: 0;
+    transform-origin: bottom;
+    transform: skewX(45deg);
+    background-color: #323338;
+    transition: 1s;
+}
+
+.new-games-container ul a {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: rgb(187, 184, 184);
+}
+
+.new-games-container .active-game-item {
+    color: white;
+    font-weight: bold;
+    background-color: rgb(2, 160, 233);
+    transform: translateX(var(--item-move-step));
+}
+
+.new-games-container .active-game-item::after {
+    background-color: rgb(3, 140, 204);
+}
+
+.new-games-container .active-game-item::before {
+    background-color: rgb(3, 118, 172);
+}
+
+@media (hover: hover) {
+    .new-games-container ul li:hover{
+        background-color: rgb(0, 174, 255);
+        transform: translateX(var(--item-move-step));
+        cursor: pointer;
+    }
+    
+    .new-games-container ul li:hover::after {
+        background-color: rgb(0, 144, 211);
+    }
+    
+    .new-games-container ul li:hover::before {
+        background-color: rgb(0, 127, 185);
+    }
+    
+    .new-games-container ul li:hover {
+        color: white;
+        font-weight: bold;
+    }
+
+    .play-button:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .play-button:hover div {
+        top: 50%;
+        color: rgba(255, 255, 255, 1);
+        transform: translate(-50%, -50%);
+    }
+}

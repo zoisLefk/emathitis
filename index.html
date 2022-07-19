@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>e-mathitis</title>
+        <link rel="stylesheet" href="./static/styles/style.css">
+    </head>
+
+    <body>
+        <!-- <script src="https://unpkg.com/vue@3"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.global.prod.js"></script>
+        <script src="https://unpkg.com/vue-router@4.0.9/dist/vue-router.global.js"></script>
+        
+        <div id="app">
+            <div id="navbar">
+                <router-link to="/" class="site-title">e-mathitis</router-link>
+                <a class="toggle-button" id="toggle-button" ref="toggle_button">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </a>
+                <ul class="navbar-links" id="navbar-links" ref="navbar_links">
+                    <li>
+                        <router-link to="'/games">Games</router-link>
+                    </li>
+                    <li>
+                        <router-link to="'/about">About</router-link>
+                    </li>
+                </ul>
+            </div>
+            <div class="container">
+                <router-view></router-view>
+            </div>
+        </div>
+
+        <!-- <script src="./static/scripts/games.js"></script> -->
+        <script src="./static/scripts/app.js" type="module"></script>
+
+        <footer>
+            <span>© Zois Lefkidis</span>
+            <span>emathitis.gr 2022</span>
+            <span>the best video games</span>
+        </footer>
+    </body>
+</html>

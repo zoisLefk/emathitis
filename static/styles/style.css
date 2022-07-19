@@ -1,0 +1,562 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #23273a;
+}
+
+#navbar {
+    background-color: #333;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    z-index: 0;
+}
+
+#navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+#navbar .site-title {
+    font-size: 3rem;
+}
+
+#navbar ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+#navbar li {
+    padding: 0 0.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links .router-link-active {
+    background-color: #999;
+    padding: 10px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.toggle-button {
+    width: 50px;
+    height: 40px;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: none;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+.toggle-button .bar {
+    width: 100%;
+    height: 5px;
+    background-color: white;
+    border-radius: 20px;
+    margin: 5px 0;
+}
+
+#app {
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.title {
+    text-align: center;
+    font-size: 3rem;
+    color: white;
+    margin: 30px 0;
+}
+
+.sub-title {
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    margin: 0;
+    margin-top: 100px;
+}
+
+.wrapper {
+    max-width: 800px;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.fullscreen-button {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    padding: 5px;
+    transition: padding 500ms;
+    cursor: pointer;
+}
+
+.fullscreen-button:focus {
+    border: none;
+}
+
+.fullscreen-button .row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fullscreen-button .row span {
+    width: 10px;
+    height: 10px;
+}
+
+.fullscreen-button .row:nth-child(1) span {
+    border: none;
+    border-top: 4px solid white;
+}
+
+.fullscreen-button .row:nth-child(2) span {
+    border: none;
+    border-bottom: 4px solid white;
+}
+
+.fullscreen-button .row span:nth-child(1) {
+    border-left: 4px solid white;
+}
+
+.fullscreen-button .row span:nth-child(2) {
+    border-right: 4px solid white;
+}
+
+.fullscreen-button.is-fullscreen {
+    padding: 0;
+}
+
+.fullscreen-button.is-fullscreen  .row:nth-child(1) span {
+    border: none;
+    border-bottom: 4px solid white;
+}
+
+.fullscreen-button.is-fullscreen  .row:nth-child(2) span {
+    border: none;
+    border-top: 4px solid white;
+}
+
+.fullscreen-button.is-fullscreen  .row span:nth-child(1) {
+    border-right: 4px solid white;
+}
+
+.fullscreen-button.is-fullscreen  .row span:nth-child(2) {
+    border-left: 4px solid white;
+}
+
+#canvas {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    background-color: #1f1f1e;
+    border-radius: 20px;
+    margin-bottom: 100px;
+}
+
+.fullscreen {
+    position: absolute;
+    top: 0;
+    max-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fullscreen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+}
+
+.fullscreen .game-header {
+    position: absolute;
+    right: 0px;
+    top: 5px;
+}
+
+.fullscreen .game-header .title {
+    display: none;
+}
+
+.fullscreen .game {
+    margin: 0;
+    aspect-ratio: 16/9;
+    max-height: 100vh;
+    max-width: 100vw;
+}
+
+.card-container {
+    width: 500px;
+    aspect-ratio: 2/3;
+    display: flex;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 50px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #555;
+    position: relative;
+}
+
+.card-container a {
+    text-decoration: none;
+}
+
+.card-container .card-img {
+    width: 100%;
+    border-radius: 15px;
+    transition: width 500ms linear;
+}
+
+.card-container .card {
+    background-color: #555;
+    display: flex;
+    justify-content: center;
+}
+
+.card-container span {
+    color: white;
+    font-size: 3rem;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.game-grid {
+    width: fit-content;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    row-gap: 20px;
+    column-gap: 20px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+footer {
+    background-color: #333;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer span {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (hover: hover) {
+    .fullscreen-button:hover {
+        padding: 0;
+    }
+
+    .card-container:hover .card-img, .card-container:focus .card-img {
+        width: 110%;
+    }
+
+    .fullscreen-button.is-fullscreen:hover {
+        padding: 5px;
+    }
+
+    #navbar li:hover {
+        background-color: #777;
+    }
+}
+
+@media (max-width: 2000px) {
+    .card-container {
+        width: 400px;
+    }
+
+    .card-container span {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 1500px) {
+    .card-container {
+        width: 300px;
+    }
+
+    .card-container span {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 1100px) {
+    .card-container {
+        width: 250px;
+    }
+
+    .card-container span {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .card-container {
+        width: 200px;
+    }
+
+    .card-container span {
+        font-size: 1.5rem;
+    }
+
+    .game-grid {
+        row-gap: 10px;
+        column-gap: 10px;
+    }
+}
+
+@media (max-width: 700px) {
+    .game-grid {
+        grid-template-columns: auto auto;
+    }
+
+    .card-container {
+        border-radius: 25px;
+    }
+
+    #navbar {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .card-container {
+        width: 150px;
+    }
+
+    .card-container .card-img {
+        border-radius: 10px;
+    }
+
+    .card-container span {
+        font-size: 1.3rem;
+        bottom: 10px;
+    }
+
+    #navbar {
+        padding: 0 10px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #navbar a {
+        font-size: 2rem;
+    }
+
+    #navbar li {
+        padding: 0.25rem;
+        width: 100%;
+    }
+
+    #navbar li a {
+        width: 100%;
+    }
+
+    #navbar .navbar-links {
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    #navbar .active {
+        display: flex;
+    }
+
+    .toggle-button {
+        display: block;
+    }
+}
+
+@media (max-width: 340px) {
+    .card-container {
+        width: 125px;
+    }
+}
+
+@media (max-width: 300px) {
+    .card-container {
+        width: 100px;
+        border-radius: 15px;
+    }
+
+    .card-container .card-img {
+        border-radius: 5px;
+    }
+
+    .card-container span {
+        font-size: 1rem;
+    }
+
+    #navbar .site-title {
+        font-size: 2rem;
+    }
+
+    .toggle-button {
+        top: 0.15rem;
+        right: 0.2rem;
+    }
+
+    .title {
+        margin: 10px;
+    }
+}
+
+@media (max-width: 280px) {
+    .card-container {
+        width: 90px;
+    }
+
+    .card-container span {
+        font-size: 0.7rem;
+    }
+}
+
+
+@media (max-width: 210px) {
+    .game-grid {
+        grid-template-columns: auto;
+    }
+
+    #navbar a {
+        font-size: 1.5rem;
+    }
+
+    #navbar .site-title {
+        font-size: 1rem;
+    }
+
+    .toggle-button {
+        width: 20px;
+        height: 15px;
+        top: 0.05rem;
+    }
+
+    .toggle-button .bar {
+        height: 2px;
+        margin: 3px 0;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 150px) {
+    .title {
+        font-size: 1rem;
+    }
+
+    .card-container {
+        width: 70px;
+    }
+}
+
+@media (max-width: 110px) {
+    #navbar .site-title {
+        font-size: 0.7rem;
+    }
+
+    #navbar a {
+        font-size: 1rem;
+    }
+
+    #navbar {
+        padding: 0;
+    }
+
+    .title {
+        font-size: 0.7rem;
+    }
+
+    .card-container {
+        width: 60px;
+    }
+    
+    .toggle-button {
+        width: 10px;
+        height: 10px;
+        top: 0.05rem;
+    }
+
+    .toggle-button .bar {
+        height: 1px;
+        margin: 2px 0;
+    }
+}
+
+@media (max-width: 90px) {
+    .title {
+        font-size: 0.5rem;
+    }
+
+    .card-container {
+        width: 40px;
+        border-radius: 10px;
+    }
+    
+    .toggle-button {
+        width: 10px;
+        height: 10px;
+        top: 0.05rem;
+    }
+
+    .toggle-button .bar {
+        height: 1px;
+        margin: 2px 0;
+    }
+
+    #navbar a {
+        font-size: 0.7rem;
+    }
+}
